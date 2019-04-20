@@ -1,0 +1,359 @@
+body, html {
+  height: 100%;
+  overflow: hidden;
+  background: url(../img/bg.png) repeat;
+}
+@keyframes music {
+  0% {
+    transform: translate3d(0, 0, 0) rotateZ(0deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotateZ(360deg);
+  }
+}
+@keyframes loading-icon {
+  0% {
+    background: url(../img/loading-left.png) no-repeat center / contain;
+  }
+  50% {
+    background: url(../img/loading-right.png) no-repeat center / contain;
+  }
+  100% {
+    background: url(../img/loading-left.png) no-repeat center / contain;
+  }
+}
+.transition {
+  transition: 0.268s all ease
+}
+.button-active:active {
+  transform: scale(0.95)
+}
+
+.z1 {
+  z-index: 1
+}
+.z2 {
+  z-index: 2
+}
+.z-top {
+  z-index: 99
+}
+.none {
+  display: none
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute
+}
+.full-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: url(../img/bg.png) center / cover #002660;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.loading-content {
+  padding-bottom: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+.loading-icon {
+  width: 1.15rem;
+  height: 1rem;
+  background: url(../img/loading-left.png) no-repeat center / contain;
+  animation: loading-icon 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+  margin-bottom: 0.5rem
+}
+.loading-bar {
+  width: 50vw;
+  height: 0.18rem;
+  border-radius: 9px;
+  background: #c6e6e8;
+  position: relative;
+  overflow: hidden;
+}
+.load {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 0.18rem;
+  background: #dd6b53
+}
+.logo {
+  width: 1.67rem;
+  height: 0.34rem;
+  position: fixed;
+  left: 0.52rem;
+  top: 0.44rem;
+}
+.index {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  overflow: hidden;
+}
+.logo {
+  font-size: 1rem
+}
+.index-foot {
+  position: absolute;
+  width: 6.34rem;
+  height: 2.4rem;
+  bottom: 1.8rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.index-font1 {
+  position: absolute;
+  top: 0.24rem;
+  left: 0;
+  width: 3.72rem;
+  height: 1.2rem;
+}
+
+.index-font2 {
+  position: absolute;
+  bottom: 0.05rem;
+  left: 0;
+  width: 3.69rem;
+  height: 0.7rem
+}
+.index-begin {
+  position: absolute;
+  left: 4.18rem;
+  top: 0;
+  width: 2.16rem;
+  height: 2.40rem;
+}
+.img-cover {
+  position: absolute;
+  top: 1.12rem;
+  left: 10%;
+  right: 0;
+  margin: auto;
+  /* width: 33.7rem; */
+  width: 6.74rem;
+  height: 7.63rem;
+}
+.input-content {
+  background: url(../img/input-content-bg.png) repeat center / cover;
+  overflow: hidden;
+}
+@keyframes slowShow {
+  from {
+    height: 0
+  }
+  to {
+    height: 9.88rem;
+  }
+}
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1
+  }
+}
+.input-img {
+  width: 6.18rem;
+  height: 9.88rem;
+  background: url(../img/input-content.png) no-repeat top center / 6.18rem 9.88rem;
+  left: 14%;
+  right: 0;
+  top: 1.33rem;
+  animation: slowShow 2s ease
+}
+.test-button {
+  opacity: 0;
+  left: 0;
+  right: 0;
+  top: 11.5rem;
+  margin: auto;
+  width: 4.88rem;
+  animation: show 0.5s ease;
+  animation-delay: 2s;
+  animation-fill-mode: forwards
+}
+.input-name {
+  top: 5.66rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 4.5rem;
+  height: 0.8rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  padding-left: 0.3rem;
+  border-radius: 0.4rem;
+}
+.input-name::-webkit-input-placeholder{
+    color:#ff5a5f;
+}
+.input-name::-moz-placeholder{
+    color:#ff5a5f;
+}
+.input-name:-moz-placeholder{
+    color:#ff5a5f;
+}
+.input-name:-ms-input-placeholder{
+    color:#ff5a5f;
+}
+.question-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.question-bg {
+  display: none
+}
+.question-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2.24rem;
+  margin: auto;
+}
+.question1 {
+  background: url(../img/q1-bg.png) no-repeat 99% 100% / cover
+}
+.question2 {
+  background: url(../img/q2-bg.png) no-repeat 99% 100% / cover
+}
+.question3 {
+  background: url(../img/q3-bg.png) no-repeat 99% 100% / cover
+}
+.question4 {
+  background: url(../img/q4-bg.png) no-repeat 99% 100% / cover
+}
+.question5 {
+  background: url(../img/q5-bg.png) no-repeat 99% 100% / cover
+}
+.question6 {
+  background: url(../img/q6-bg.png) no-repeat 99% 100% / cover
+}
+.question-title1 {
+  width: 5.29rem
+}
+.question-title2 {
+  width: 3.88rem
+}
+.question-title3 {
+  width: 5.27rem
+}
+.question-title4 {
+  width: 5.44rem
+}
+.question-title5 {
+  width: 5.33rem
+}
+.question-title6 {
+  width: 4.35rem
+}
+.answer-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 4.63rem;
+  top: 4rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center
+}
+.answer-item {
+  color: #fff;
+  width: 4.63rem;
+  line-height: 0.4rem;
+  padding: 0.2rem 0.3rem;
+  margin-bottom: 0.15rem;
+  background: url(../img/answer-bg.png) no-repeat center / 100% 100%;
+  display: flex;
+  align-items: center
+}
+.answer-item i {
+  padding-right: 0.15rem
+}
+
+.tips-content {
+  position: absolute;
+  background: url(../img/tips-bg.png) repeat center / cover;
+}
+.tip-cover {
+  top: 1.56rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 5.8rem;
+}
+.result-cover {
+  top: 1.13rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 6.94rem
+}
+.t-c, .r-c {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.submit-button,
+.next-button {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 7.8rem;
+  width: 4rem;
+  margin: auto;
+}
+.draw-button {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 4.88rem;
+  margin: auto;
+  top: 8.33rem
+}
+.name {
+  color: #032663;
+  font-size: 17px;
+  position: absolute;
+  right: 4.48rem;
+  top: 0.36rem;
+  z-index: 1;
+  text-align: right
+}
+
+.music {
+  animation: 2.3s music linear infinite;
+  position: fixed;
+  z-index: 99;
+  right: 0.37rem;
+  top: 0.33rem;
+  width: 0.58rem;
+  height: 0.58rem;
+  background: url(../img/music.png) no-repeat center / contain;
+}
+.music-pause {
+  animation: none;
+  background: url(../img/music-pause.png) no-repeat center / contain;  
+}
