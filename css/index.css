@@ -478,10 +478,10 @@ body, html {
 }
 .name {
   color: #032663;
-  font-size: 17px;
+  font-size: 14px;
   position: absolute;
   right: 3.78rem;
-  top: 0.26rem;
+  top: 0.28rem;
   z-index: 1;
   text-align: right
 }
