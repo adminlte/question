@@ -3,6 +3,72 @@ body, html {
   overflow: hidden;
   background: url(../img/bg.png) repeat;
 }
+@keyframes bounceInRight {
+    0%,60%,75%,90%,to {
+        -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
+        animation-timing-function: cubic-bezier(.215,.61,.355,1)
+    }
+
+    0% {
+        -webkit-transform: translate3d(3000px,0,0);
+        opacity: 0;
+        transform: translate3d(3000px,0,0)
+    }
+
+    60% {
+        -webkit-transform: translate3d(-25px,0,0);
+        opacity: 1;
+        transform: translate3d(-25px,0,0)
+    }
+
+    75% {
+        -webkit-transform: translate3d(10px,0,0);
+        transform: translate3d(10px,0,0)
+    }
+
+    90% {
+        -webkit-transform: translate3d(-5px,0,0);
+        transform: translate3d(-5px,0,0)
+    }
+
+    to {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0)
+    }
+}
+@keyframes bounceInLeft {
+    0%,60%,75%,90%,to {
+        -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
+        animation-timing-function: cubic-bezier(.215,.61,.355,1)
+    }
+
+    0% {
+        -webkit-transform: translate3d(-3000px,0,0);
+        opacity: 0;
+        transform: translate3d(-3000px,0,0)
+    }
+
+    60% {
+        -webkit-transform: translate3d(25px,0,0);
+        opacity: 1;
+        transform: translate3d(25px,0,0)
+    }
+
+    75% {
+        -webkit-transform: translate3d(-10px,0,0);
+        transform: translate3d(-10px,0,0)
+    }
+
+    90% {
+        -webkit-transform: translate3d(5px,0,0);
+        transform: translate3d(5px,0,0)
+    }
+
+    to {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0)
+    }
+}
 @keyframes bounceInDown {
   0%,60%,75%,90%,to {
     -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
@@ -35,6 +101,39 @@ body, html {
     -webkit-transform: translateZ(0);
     transform: translateZ(0)
   }
+}
+@keyframes bounceInUp {
+    0%,60%,75%,90%,to {
+        -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
+        animation-timing-function: cubic-bezier(.215,.61,.355,1)
+    }
+
+    0% {
+        -webkit-transform: translate3d(0,3000px,0);
+        opacity: 0;
+        transform: translate3d(0,3000px,0)
+    }
+
+    60% {
+        -webkit-transform: translate3d(0,-20px,0);
+        opacity: 1;
+        transform: translate3d(0,-20px,0)
+    }
+
+    75% {
+        -webkit-transform: translate3d(0,10px,0);
+        transform: translate3d(0,10px,0)
+    }
+
+    90% {
+        -webkit-transform: translate3d(0,-5px,0);
+        transform: translate3d(0,-5px,0)
+    }
+
+    to {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0)
+    }
 }
 @keyframes music {
   0% {
@@ -328,13 +427,24 @@ body, html {
   background: url(../img/tips-bg.png) repeat center / cover;
 }
 .tip-cover {
-  
-  animation: bounceInDown 1s;
+  animation-duration: 1s;
   top: 1.56rem;
   left: 0;
   right: 0;
   margin: auto;
   width: 5.8rem;
+}
+.bounceInUp {
+  animation-name: bounceInUp;
+}
+.bounceInDown {
+  animation-name: bounceInDown;
+}
+.bounceInRight {
+  animation-name: bounceInRight;
+}
+.bounceInLeft {
+  animation-name: bounceInLeft;
 }
 .result-cover {
   top: 1.13rem;
@@ -370,8 +480,8 @@ body, html {
   color: #032663;
   font-size: 17px;
   position: absolute;
-  right: 4.48rem;
-  top: 0.36rem;
+  right: 3.78rem;
+  top: 0.26rem;
   z-index: 1;
   text-align: right
 }

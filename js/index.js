@@ -65,10 +65,14 @@ function renderQuestion(page) {
   html +='</div>'
   $('.question-content').html(html)
 }
+function roundTips() {
+  var list = ['bounceInRight', 'bounceInLeft', 'bounceInUp', 'bounceInDown']
+  return list[Math.floor(Math.random() * 3)]
+}
 function renderTips(page) {
   showPage('tips-content', true)
   var html = ''
-  html += '<div class="tips tips'+ page +' full-screen"><div class="tip-cover absolute">'
+  html += '<div class="tips tips' + page + ' full-screen"><div class="tip-cover ' + roundTips() +' absolute">'
   html += '<img src="./img/t'+ page +'.png" alt="" class="t-c">'
   if (page == 6) {
     html += '<img src="./img/submit-button.png" alt="" class="submit-button button-active transition">'
