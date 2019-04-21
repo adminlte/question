@@ -3,6 +3,39 @@ body, html {
   overflow: hidden;
   background: url(../img/bg.png) repeat;
 }
+@keyframes bounceInDown {
+  0%,60%,75%,90%,to {
+    -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
+    animation-timing-function: cubic-bezier(.215,.61,.355,1)
+  }
+
+  0% {
+    -webkit-transform: translate3d(0,-3000px,0);
+    opacity: 0;
+    transform: translate3d(0,-3000px,0)
+  }
+
+  60% {
+    -webkit-transform: translate3d(0,25px,0);
+    opacity: 1;
+    transform: translate3d(0,25px,0)
+  }
+
+  75% {
+    -webkit-transform: translate3d(0,-10px,0);
+    transform: translate3d(0,-10px,0)
+  }
+
+  90% {
+    -webkit-transform: translate3d(0,5px,0);
+    transform: translate3d(0,5px,0)
+  }
+
+  to {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+  }
+}
 @keyframes music {
   0% {
     transform: translate3d(0, 0, 0) rotateZ(0deg);
@@ -25,7 +58,7 @@ body, html {
 .transition {
   transition: 0.268s all ease
 }
-.button-active:active {
+.button-start {
   transform: scale(0.95)
 }
 
@@ -156,7 +189,7 @@ body, html {
     height: 0
   }
   to {
-    height: 9.88rem;
+    height: 8rem;
   }
 }
 @keyframes show {
@@ -171,7 +204,7 @@ body, html {
   width: 5rem;
   height: 8rem;
   background: url(../img/input-content.png) no-repeat top center / 5rem 8rem;
-  left: 4%;
+  left: 0;
   right: 0;
   margin: auto;
   top: 1.33rem;
@@ -295,6 +328,8 @@ body, html {
   background: url(../img/tips-bg.png) repeat center / cover;
 }
 .tip-cover {
+  
+  animation: bounceInDown 1s;
   top: 1.56rem;
   left: 0;
   right: 0;

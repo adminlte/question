@@ -66,7 +66,7 @@ function renderQuestion(page) {
   $('.question-content').html(html)
 }
 function renderTips(page) {
-  showPage('tips-content')
+  showPage('tips-content', true)
   var html = ''
   html += '<div class="tips tips'+ page +' full-screen"><div class="tip-cover absolute">'
   html += '<img src="./img/t'+ page +'.png" alt="" class="t-c">'
@@ -80,7 +80,7 @@ function renderTips(page) {
   $('.tips-content').html(html)
 }
 function renderResult(count) {
-  showPage('result-content')
+  showPage('result-content', true)
   var html = ''
   html += '<div class="result result'+ count +' full-screen"><div class="result-cover absolute">'
   html += '<span class="name">' + $('.input-name').val()+'</span>'
@@ -146,7 +146,7 @@ $(function () {
 })
 $('.index-begin').on('click', function (params) {
   console.log('begin')
-  showPage('input-content')
+  showPage('input-content', true)
 })
 $('.test-button').on('click', function(){
   var val = $('.input-name').val()
@@ -185,10 +185,18 @@ $('.tips-content').on('click', '.submit-button', function () {
       result = 4
       break
   }
-  console.log(result)
   renderResult(result)
 })
-function showPage(className) {
+$('body').on('touchstart', '.button-active', function () {
+  // alert('touchstart')
+  $(this).addClass('button-start')
+})
+
+$('body').on('touchend', '.button-active', function () {
+  // alert('touchstart')
+  $(this).removeClass('button-start')
+})
+function showPage(className, showLogo) {
   setTimeout(() => {
     $('.loading').hide()
     $('.index').hide()
@@ -196,8 +204,12 @@ function showPage(className) {
     $('.question-content').hide()
     $('.tips-content').hide()
     $('.result-content').hide()
+    $('.logo').hide()
+    if (showLogo) {
+      $('.logo').show()
+    }
     $('.' + className).fadeIn('800')
-  }, 200)
+  }, 260)
 }
 function __init__() {
   // $('.loading').hide()
