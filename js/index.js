@@ -231,9 +231,9 @@ function showPage(className, showLogo) {
   }, 260)
 }
 function __init__() {
-  document.body.addEventListener('touchmove', function (e) {
-    e.preventDefault()
-  }, {passive: false})
+  // document.body.addEventListener('touchmove', function (e) {
+  //   e.preventDefault()
+  // }, {passive: false})
   // $('.loading').hide()
   $('.index').hide()
   $('.input-content').hide()
