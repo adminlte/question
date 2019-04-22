@@ -1,4 +1,4 @@
-var url = 'https://www.alcon.com.cn/' // 跳转链接
+var url = '#' // 跳转链接
 var list = [
   {
     A: '起床后立刻戴镜',
