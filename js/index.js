@@ -1,3 +1,4 @@
+var url = 'https://www.alcon.com.cn/' // 跳转链接
 var list = [
   {
     A: '起床后立刻戴镜',
@@ -39,6 +40,7 @@ var list = [
 var count = 0
 var page = 1
 var isReady = true
+var isReadyDirect = true
 
 function showIndex() {
   $('.loading').hide()
@@ -47,7 +49,7 @@ function showIndex() {
 function renderQuestion(page) {
   showPage('question-content')
   var html = ''
-  html += '<div class="question question'+ page +' full-screen">'
+  html += '<div class="question question'+ page +' full-screen"><div class="main-content">'
   // html += '<img src="./img/q'+page+'-bg.png" alt="" class="question-bg question-bg'+page+'">'
   html += '<img src="./img/q'+page+'-title.png" alt="" class="question-title question-title'+page+'">'
   html += '<ul class="answer-list">'
@@ -63,6 +65,7 @@ function renderQuestion(page) {
   }
   html +='</ul>'
   html +='</div>'
+  html +='</div>'
   $('.question-content').html(html)
 }
 function roundTips() {
@@ -72,7 +75,7 @@ function roundTips() {
 function renderTips(page) {
   showPage('tips-content', true)
   var html = ''
-  html += '<div class="tips tips' + page + ' full-screen"><div class="tip-cover ' + roundTips() +' absolute">'
+  html += '<div class="tips tips' + page + ' full-screen"><div class="main-content"><div class="tip-cover ' + roundTips() +' absolute">'
   html += '<img src="./img/t'+ page +'.png" alt="" class="t-c">'
   if (page == 6) {
     html += '<img src="./img/submit-button.png" alt="" class="submit-button button-active transition">'
@@ -81,15 +84,17 @@ function renderTips(page) {
   }
   html += '</div>'
   html += '</div>'
+  html += '</div>'
   $('.tips-content').html(html)
 }
 function renderResult(count) {
   showPage('result-content', true)
   var html = ''
-  html += '<div class="result result'+ count +' full-screen"><div class="result-cover absolute">'
+  html += '<div class="result result'+ count +' full-screen"><div class="main-content"><div class="result-cover absolute">'
   html += '<span class="name">' + $('.input-name').val()+'</span>'
   html += '<img src="./img/r'+ count +'.png" alt="" class="r-c">'
-  html += '<img src="./img/draw-button.png" alt="" class="draw-button button-active transition">'
+  html += '<img src="./img/draw-button.png" alt="" class="url draw-button button-active transition">'
+  html += '</div>'
   html += '</div>'
   html += '</div>'
   $('.result-content').html(html)
@@ -192,13 +197,20 @@ $('.tips-content').on('click', '.submit-button', function () {
   renderResult(result)
 })
 $('body').on('touchstart', '.button-active', function () {
-  // alert('touchstart')
   $(this).addClass('button-start')
 })
 
 $('body').on('touchend', '.button-active', function () {
-  // alert('touchstart')
   $(this).removeClass('button-start')
+})
+$('.result-content').on('touchend', '.draw-button', function() {
+  if (isReadyDirect) {
+    isReadyDirect = false
+    setTimeout(function() {
+      location.href = url
+      isReadyDirect = true
+    }, 300)
+  }
 })
 function showPage(className, showLogo) {
   setTimeout(() => {
@@ -216,6 +228,9 @@ function showPage(className, showLogo) {
   }, 260)
 }
 function __init__() {
+  document.body.addEventListener('touchmove', function (e) {
+    e.preventDefault()
+  }, {passive: false})
   // $('.loading').hide()
   $('.index').hide()
   $('.input-content').hide()

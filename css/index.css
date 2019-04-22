@@ -3,6 +3,17 @@ body, html {
   overflow: hidden;
   background: url(../img/bg.png) repeat;
 }
+.main-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  width: 100vw;
+  height: 11.08rem;
+  /* background: #faa */
+}
 @keyframes bounceInRight {
     0%,60%,75%,90%,to {
         -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
@@ -245,7 +256,7 @@ body, html {
   position: absolute;
   width: 5.34rem;
   height: 2.4rem;
-  bottom: 1.8rem;
+  bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
@@ -271,12 +282,12 @@ body, html {
 }
 .img-cover {
   position: absolute;
-  top: 1.6rem;
-  left: 10%;
+  top: 0.8rem;
+  left: 0;
   right: 0;
   margin: auto;
   /* width: 33.7rem; */
-  width: 5rem;
+  width: 5.9rem;
   /* height: 7.63rem; */
 }
 .input-content {
@@ -288,7 +299,7 @@ body, html {
     height: 0
   }
   to {
-    height: 8rem;
+    height: 8.73rem;
   }
 }
 @keyframes show {
@@ -300,28 +311,28 @@ body, html {
   }
 }
 .input-img {
-  width: 5rem;
-  height: 8rem;
-  background: url(../img/input-content.png) no-repeat top center / 5rem 8rem;
+  width: 5.4rem;
+  height: 8.73rem;
+  background: url(../img/input-content.png) no-repeat top center / 5.4rem 8.73rem;
   left: 0;
   right: 0;
   margin: auto;
-  top: 1.33rem;
+  top: 0.8rem;
   animation: slowShow 2s ease
 }
 .test-button {
   opacity: 0;
   left: 0;
   right: 0;
-  top: 9.4rem;
+  bottom: 0.2rem;
   margin: auto;
-  width: 4.2rem;
+  width: 4.6rem;
   animation: show 0.5s ease;
   animation-delay: 2s;
   animation-fill-mode: forwards
 }
 .input-name {
-  top: 4.4rem;
+  top: 4.84rem;
   left: 0;
   right: 0;
   margin: auto;
@@ -358,7 +369,7 @@ body, html {
   position: absolute;
   left: 0;
   right: 0;
-  top: 2.24rem;
+  top: 2rem;
   margin: auto;
 }
 .question1 {
@@ -428,11 +439,11 @@ body, html {
 }
 .tip-cover {
   animation-duration: 1s;
-  top: 1.56rem;
+  top: 0.8rem;
   left: 0;
   right: 0;
   margin: auto;
-  width: 5.8rem;
+  width: 6.1rem;
 }
 .bounceInUp {
   animation-name: bounceInUp;
@@ -447,11 +458,11 @@ body, html {
   animation-name: bounceInLeft;
 }
 .result-cover {
-  top: 1.13rem;
+  top: 0.8rem;
   left: 0;
   right: 0;
   margin: auto;
-  width: 5.7rem
+  width: 6rem
 }
 .t-c, .r-c {
   position: absolute;
@@ -472,18 +483,18 @@ body, html {
   position: absolute;
   left: 0;
   right: 0;
-  width: 3.98rem;
+  width: 4.3rem;
   margin: auto;
-  top: 6.9rem;
+  top: 7.2rem;
 }
 .name {
   color: #032663;
-  font-size: 14px;
+  font-size: 15px;
   position: absolute;
-  right: 3.78rem;
-  top: 0.28rem;
+  right: 3.94rem;
+  top: 0.3rem;
   z-index: 1;
-  text-align: right
+  text-align: right;
 }
 
 .music {
