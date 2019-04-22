@@ -291,7 +291,7 @@ body, html {
   /* height: 7.63rem; */
 }
 .input-content {
-  background: url(../img/input-content-bg.png) repeat center / cover;
+  background: url(../img/input-content-bg.png) repeat center / cover #014382;
   overflow: hidden;
 }
 @keyframes slowShow {
@@ -435,7 +435,7 @@ body, html {
 
 .tips-content {
   position: absolute;
-  background: url(../img/tips-bg.png) repeat center / cover;
+  background: url(../img/tips-bg.png) repeat center / cover #014381;
 }
 .tip-cover {
   animation-duration: 1s;
