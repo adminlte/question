@@ -201,7 +201,10 @@ $('body').on('touchstart', '.button-active', function () {
 })
 
 $('body').on('touchend', '.button-active', function () {
-  $(this).removeClass('button-start')
+  var that = $(this)
+  setTimeout(function() {
+    that.removeClass('button-start')
+  }, 100)
 })
 $('.result-content').on('touchend', '.draw-button', function() {
   if (isReadyDirect) {
