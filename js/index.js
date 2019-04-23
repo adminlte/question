@@ -230,32 +230,14 @@ function showPage(className, showLogo) {
     $('.' + className).fadeIn('800')
   }, 260)
 }
+// 输入框弹起软键盘的解决方案
 function inputScroll(){
-  //input输入框弹起软键盘的解决方案。
   var bfscrolltop = document.body.scrollTop;
-  $("input").focus(function () {
+  $('input').focus(function () {
     document.body.scrollTop = document.body.scrollHeight;
-    //console.log(document.body.scrollTop);
   }).blur(function () {
     document.body.scrollTop = bfscrolltop;
-    //console.log(document.body.scrollTop);
-  });
-  //select输入框弹起软键盘的解决方案。
-  $("select").focus(function () {
-    document.body.scrollTop = document.body.scrollHeight;
-    //console.log(document.body.scrollTop);
-  }).blur(function () {
-    document.body.scrollTop = bfscrolltop;
-    //console.log(document.body.scrollTop);
-  });
-  //textarea输入框弹起软键盘的解决方案。
-  $("textarea").focus(function () {
-    document.body.scrollTop = document.body.scrollHeight;
-    //console.log(document.body.scrollTop);
-  }).blur(function () {
-    document.body.scrollTop = bfscrolltop;
-    //console.log(document.body.scrollTop);
-  });
+  })
 }
 function __init__() {
   inputScroll()
