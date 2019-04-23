@@ -230,10 +230,38 @@ function showPage(className, showLogo) {
     $('.' + className).fadeIn('800')
   }, 260)
 }
+function inputScroll(){
+  //input输入框弹起软键盘的解决方案。
+  var bfscrolltop = document.body.scrollTop;
+  $("input").focus(function () {
+    document.body.scrollTop = document.body.scrollHeight;
+    //console.log(document.body.scrollTop);
+  }).blur(function () {
+    document.body.scrollTop = bfscrolltop;
+    //console.log(document.body.scrollTop);
+  });
+  //select输入框弹起软键盘的解决方案。
+  $("select").focus(function () {
+    document.body.scrollTop = document.body.scrollHeight;
+    //console.log(document.body.scrollTop);
+  }).blur(function () {
+    document.body.scrollTop = bfscrolltop;
+    //console.log(document.body.scrollTop);
+  });
+  //textarea输入框弹起软键盘的解决方案。
+  $("textarea").focus(function () {
+    document.body.scrollTop = document.body.scrollHeight;
+    //console.log(document.body.scrollTop);
+  }).blur(function () {
+    document.body.scrollTop = bfscrolltop;
+    //console.log(document.body.scrollTop);
+  });
+}
 function __init__() {
-  // document.body.addEventListener('touchmove', function (e) {
-  //   e.preventDefault()
-  // }, {passive: false})
+  inputScroll()
+  document.body.addEventListener('touchmove', function (e) {
+    e.preventDefault()
+  }, {passive: false})
   // $('.loading').hide()
   $('.index').hide()
   $('.input-content').hide()
