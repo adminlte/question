@@ -1,6 +1,5 @@
 var url = '#' // 跳转链接
-var list = [
-  {
+var list = [{
     A: '起床后立刻戴镜',
     B: '洗净双手后，妆前戴镜',
     C: '化完全妆后，妆后戴镜',
@@ -44,71 +43,76 @@ var isReadyDirect = true
 
 function showIndex() {
   $('.loading').hide()
-  $('.index').fadeIn('800')
+  // 图片加载完打开的页面
+  // $('.index').fadeIn('800')
 }
+
 function renderQuestion(page) {
   showPage('question-content')
   var html = ''
-  html += '<div class="question question'+ page +' full-screen"><div class="main-content">'
+  html += '<div class="question question' + page + ' full-screen"><div class="main-content">'
   // html += '<img src="./img/q'+page+'-bg.png" alt="" class="question-bg question-bg'+page+'">'
-  html += '<img src="./img/q'+page+'-title.png" alt="" class="question-title question-title'+page+'">'
+  html += '<img src="./img/q' + page + '-title.png" alt="" class="question-title question-title' + page + '">'
   html += '<ul class="answer-list">'
   var questionList = list[page - 1]
   for (var i in questionList) {
     if (i == 'key') {
       break
     } else {
-      html += '<li class="answer-item button-active transition" page="'+page+'" index="'+i+'" key="'+questionList['key']+'">'
-      html += '<i>'+i+'.</i><span>'+questionList[i]+'</span>'
+      html += '<li class="answer-item button-active transition" page="' + page + '" index="' + i + '" key="' + questionList['key'] + '">'
+      html += '<i>' + i + '.</i><span>' + questionList[i] + '</span>'
       html += '</li>'
     }
   }
-  html +='</ul>'
-  html +='</div>'
-  html +='</div>'
+  html += '</ul>'
+  html += '</div>'
+  html += '</div>'
   $('.question-content').html(html)
 }
+
 function roundTips() {
   var list = ['bounceInRight', 'bounceInLeft', 'bounceInUp', 'bounceInDown']
   return list[Math.floor(Math.random() * 3)]
 }
+
 function renderTips(page) {
   showPage('tips-content', true)
   var html = ''
-  html += '<div class="tips tips' + page + ' full-screen"><div class="main-content"><div class="tip-cover ' + roundTips() +' absolute">'
-  html += '<img src="./img/t'+ page +'.png" alt="" class="t-c">'
+  html += '<div class="tips tips' + page + ' full-screen"><div class="main-content"><div class="tip-cover ' + roundTips() + ' absolute">'
+  html += '<img src="./img/t' + page + '.png" alt="" class="t-c">'
   if (page == 6) {
     html += '<img src="./img/submit-button.png" alt="" class="submit-button button-active transition">'
   } else {
-    html += '<img src="./img/next-button.png" alt="" class="next-button button-active transition" page="'+page+'">'
+    html += '<img src="./img/next-button.png" alt="" class="next-button button-active transition" page="' + page + '">'
   }
   html += '</div>'
   html += '</div>'
   html += '</div>'
   $('.tips-content').html(html)
 }
+
 function renderResult(count) {
   showPage('result-content', true)
   var html = ''
-  html += '<div class="result result'+ count +' full-screen"><div class="main-content"><div class="result-cover absolute">'
-  html += '<span class="name">' + $('.input-name').val()+'</span>'
-  html += '<img src="./img/r'+ count +'.png" alt="" class="r-c">'
+  html += '<div class="result result' + count + ' full-screen"><div class="main-content"><div class="result-cover absolute">'
+  html += '<span class="name">' + $('.input-name').val() + '</span>'
+  html += '<img src="./img/r' + count + '.png" alt="" class="r-c">'
   html += '<img src="./img/draw-button.png" alt="" class="url draw-button button-active transition">'
   html += '</div>'
   html += '</div>'
   html += '</div>'
   $('.result-content').html(html)
 }
+
 function checkoutPage(page) {
   isReady = true
   renderTips(page)
 }
-$('.question-content').on('click', '.answer-item', function(e) {
+$('.question-content').on('click', '.answer-item', function (e) {
   if (isReady) {
     isReady = false
     if ($(this).attr('key') == $(this).attr('index')) {
       count++
-      console.log(count)
     }
     checkoutPage($(this).attr('page'))
   }
@@ -124,7 +128,7 @@ function musicControl() {
   $(window).one('touchstart', function () {
     music.play()
   })
-  
+
   // 播放音乐
   $('.music').click(function () {
     $(this).toggleClass('music-pause')
@@ -137,84 +141,84 @@ function musicControl() {
 }
 
 $(function () {
-  var imgs = $('img')
-  var num = 0
+  var imgs = $('img');
+  var num = 0;
   imgs.each(function (index) {
-    var oimg = new Image()
+    var oimg = new Image();
     oimg.onload = function () {
-      num++
-      var count = parseInt((num / imgs.length) * 100)
-      $('.load').css('width', count+'%')
-      if (count == 99 || count == 100) {
+      num++;
+      var count = parseInt((num / imgs.length) * 100);
+      $('.load').css('width', count + '%');
+      if (count > 95) {
         showIndex()
-        musicControl()
+        // musicControl()
       }
-    }
+    };
     oimg.src = imgs[index].src
   })
-})
+});
 $('.index-begin').on('click', function (params) {
-  console.log('begin')
+  console.log('begin');
   showPage('input-content', true)
-})
-$('.test-button').on('click', function(){
-  var val = $('.input-name').val()
+});
+$('.test-button').on('click', function () {
+  var val = $('.input-name').val();
   if (val) {
     renderQuestion(page)
   } else {
-    $('.input-name').attr('placeholder','请输入名字')
+    $('.input-name').attr('placeholder', '请输入名字')
   }
-})
-$('.tips-content').on('click', '.next-button', function() {
-  console.log(page)
+});
+$('.tips-content').on('click', '.next-button', function () {
+  console.log(page);
   renderQuestion($(this).attr('page') - 0 + 1)
-})
+});
 $('.tips-content').on('click', '.submit-button', function () {
-  var result = 0
+  var result = 0;
   switch (count) {
     case 0:
       result = 1
       break
     case 1:
-      result = 1
-      break
+      result = 1;
+      break;
     case 2:
-      result = 2
-      break
+      result = 2;
+      break;
     case 3:
-      result = 2
-      break
+      result = 2;
+      break;
     case 4:
-      result = 3
-      break
+      result = 3;
+      break;
     case 5:
-      result = 3
-      break
+      result = 3;
+      break;
     case 6:
-      result = 4
-      break
+      result = 4;
+      break;
   }
   renderResult(result)
-})
+});
 $('body').on('touchstart', '.button-active', function () {
   $(this).addClass('button-start')
-})
-
+});
 $('body').on('touchend', '.button-active', function () {
-  var that = $(this)
-  setTimeout(function() {
-    that.removeClass('button-start')
+  var that = $(this);
+  setTimeout(function () {
+    that.removeClass('button-start');
   }, 100)
-})
-$('.result-content').on('touchend', '.draw-button', function() {
+});
+$('.result-content').on('touchend', '.draw-button', function () {
   if (isReadyDirect) {
     isReadyDirect = false
-    setTimeout(function() {
+    setTimeout(function () {
       location.href = url
       isReadyDirect = true
     }, 300)
   }
-})
+});
+
 function showPage(className, showLogo) {
   setTimeout(() => {
     $('.loading').hide()
@@ -231,7 +235,7 @@ function showPage(className, showLogo) {
   }, 260)
 }
 // 输入框弹起软键盘的解决方案
-function inputScroll(){
+function inputScroll() {
   var bfscrolltop = document.body.scrollTop;
   $('input').focus(function () {
     document.body.scrollTop = document.body.scrollHeight;
@@ -239,16 +243,19 @@ function inputScroll(){
     document.body.scrollTop = bfscrolltop;
   })
 }
+
 function __init__() {
-  inputScroll()
+  inputScroll();
   document.body.addEventListener('touchmove', function (e) {
     e.preventDefault()
-  }, {passive: false})
+  }, {
+    passive: false
+  });
   // $('.loading').hide()
-  $('.index').hide()
-  $('.input-content').hide()
-  $('.question-content').hide()
-  $('.tips-content').hide()
-  $('.result-content').hide()
+  $('.index').hide();
+  $('.input-content').hide();
+  $('.question-content').hide();
+  $('.tips-content').hide();
+  $('.result-content').hide();
 }
-__init__()
+__init__();
