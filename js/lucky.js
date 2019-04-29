@@ -1,4 +1,4 @@
-var luckyIndex = 7; // 中奖位置
+var luckyIndex = 1; // 中奖位置
 // 谢谢 0 2 4 6
 // 天天抛 1
 // 月抛 3
@@ -39,15 +39,63 @@ var lucky = {
     return false;
   }
 };
-
+function showLuckyResult() {
+  console.log('奖品下标=====>', lucky.prize)
+  $('.lucky-cover').show()
+  switch (lucky.prize) {
+    case 0:
+      $('.prize-result').hide();
+      $('.prize-result0').show();
+      console.log('未中奖')
+      break;
+    case 1:
+      $('.prize-result').hide();
+      $('.prize-result3').show();
+      console.log('天天抛')
+      break;
+    case 2:
+      $('.prize-result').hide();
+      $('.prize-result0').show();
+      console.log('未中奖')
+      break;
+    case 3:
+      $('.prize-result').hide();
+      $('.prize-result1').show();
+      console.log('月抛')
+      break;
+    case 4:
+      $('.prize-result').hide();
+      $('.prize-result0').show();
+      console.log('未中奖')
+      break;
+    case 5:
+      $('.prize-result').hide();
+      $('.prize-result4').show();
+      console.log('50积分')
+      break;
+    case 6:
+      $('.prize-result').hide();
+      $('.prize-result0').show();
+      console.log('未中奖')
+      break;
+    case 7:
+      $('.prize-result').hide();
+      $('.prize-result2').show();
+      console.log('护理液')
+      break;
+  }
+}
 function roll() {
   lucky.times += 1;
   lucky.roll(); // 转动过程调用的是lucky的roll方法，这里是第一次调用初始化
   if (lucky.times > lucky.cycle + 10 && lucky.prize == lucky.index) {
     clearTimeout(lucky.timer);
-    lucky.prize = -1;
-    lucky.times = 0;
-    click = false;
+    setTimeout(function() {
+      showLuckyResult();
+      lucky.prize = -1;
+      lucky.times = 0;
+    }, 300)
+    // click = false; // 只能抽一次
   } else {
     if (lucky.times < lucky.cycle) {
       lucky.speed -= 10;
@@ -74,7 +122,7 @@ var click = false;
 function beginDraw() {
   lucky.speed = 100;
   roll(); // 转圈过程不响应click事件，会将click置为false
-  click = true; //一次抽奖完成后，设置click为true，可继续抽奖
+  click = true;
   return false;
 }
 window.onload = function () {

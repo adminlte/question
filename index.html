@@ -6,8 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>护眼礼包来袭,测测你的护眼值</title>
   <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/area.css">
   <link rel="stylesheet" href="./css/index.css">
 </head>
+<script src="./js/jquery.min.js"></script>
 <body>
   <img src="./img/loading-left.png" alt="" class="none">
   <img src="./img/loading-right.png" alt="" class="none">
@@ -158,8 +160,9 @@
   <div class="none">
     <img src="./img/lucky-bg.png" class="none">
     <img src="./img/lucky-board.png" class="none">
+    <img src="./img/lucky-cover-bg.png" class="none">
   </div>
-  <div class="lucky-content full-screen">
+  <div class="lucky-content full-screen none">
     <div class="main-content">
       <img src="./img/lucky-bg-t.png" alt="" class="lucky-bg-t">
       <img src="./img/lucky-bg-m.png" alt="" class="lucky-bg-m">
@@ -179,7 +182,7 @@
           <div class="board-item board-item7">
             <img src="./img/lucky4.png" alt="护理液">
           </div>
-          <div class="begin-draw">
+          <div class="begin-draw button-active">
             <img src="./img/begin-draw.png" alt="开始抽奖">
           </div>
           <div class="board-item board-item3">
@@ -199,11 +202,101 @@
         </div>
       </div>
     </div>
+    <div class="lucky-cover none">
+      <!-- 未中奖 -->
+      <div class="prize-result prize-result0 none">
+        <div class="lucky-cover-bg">
+        <img src="./img/luck-word1.png" alt="" class="luck-word">
+        <img src="./img/luck-btn1.png" alt="" class="luck-btn close-luck-btn button-active">
+      </div>
+      </div>
+      <!-- 月抛 -->
+      <div class="prize-result prize-result1 none">
+        <div class="lucky-cover-bg">
+        <img src="./img/luck-word2.png" alt="" class="luck-word">
+        <img src="./img/luck-btn2.png" alt="领取礼品" data-prize="3" class="luck-btn get-luck-btn button-active">
+      </div>
+      </div>
+      <!-- 护理液 -->
+      <div class="prize-result prize-result2 none">
+        <div class="lucky-cover-bg">
+        <img src="./img/luck-word3.png" alt="" class="luck-word">
+        <img src="./img/luck-btn2.png" alt="领取礼品" data-prize="7" class="luck-btn get-luck-btn button-active">
+      </div>
+      </div>
+      <!-- 天天抛 -->
+      <div class="prize-result prize-result3 none">
+        <div class="lucky-cover-bg">
+          <img src="./img/luck-word4.png" alt="" class="luck-word">
+          <img src="./img/luck-btn2.png" alt="领取礼品" data-prize="1" class="luck-btn get-luck-btn button-active">
+        </div>
+      </div>
+      <!-- 50积分 -->
+      <div class="prize-result prize-result4 none">
+        <div class="lucky-cover-bg">
+          <img src="./img/luck-word50.png" alt="" class="luck-word">
+          <img src="./img/luck-btn1.png" alt="关闭" class="luck-btn close-luck-btn button-active">
+        </div>
+      </div>
+      <!-- 收货信息 -->
+      <div class="address none">
+        <p class="text-center">
+          <img src="./img/recipient.png" alt="收货信息" class="recipient">
+        </p>
+        <div class="recipient-form">
+          <section>
+            <span>收件人</span>
+            <input type="text" class="recipient-name">
+          </section>
+          <section>
+            <span>手机号</span>
+            <input type="text" class="recipient-name">
+          </section>
+          <section>
+            <span>收货地址</span>
+            <div class="iphone">
+              <div class="browser">
+                <!--选择地区-->
+                <div class="express-area">
+                  <a id="expressArea" href="javascript:void(0)">
+                    <dl>
+<!--                      <dt>选择地区：</dt>-->
+                      <dd>省 > 市 > 区/县</dd>
+                    </dl>
+                  </a>
+                </div>
+                <!--选择地区弹层-->
+                <div id="areaLayer" class="express-area-box">
+                  <header>
+                    <h3>选择地区</h3>
+                    <a id="backUp" class="back" href="javascript:void(0)" title="返回"></a>
+                    <a id="closeArea" class="close" href="javascript:void(0)" title="关闭"></a>
+                  </header>
+                  <article id="areaBox">
+                    <ul id="areaList" class="area-list"></ul>
+                  </article>
+                </div>
+                <!--遮罩层-->
+                <div id="areaMask" class="mask"></div>
+                <script src="js/jquery.area.js"></script>
+              </div>
+            </div>
+          </section>
+          <section>
+            <span>详细地址</span>
+            <textarea type="text" class="recipient-name detail-addr"></textarea>
+          </section>
+          <section>
+            <img src="./img/addr-submit.png" alt="确认提交" class="addr-submit button-active">
+          </section>
+        </div>
+      </div>
+    </div>
   </div>
   <audio autoplay loop></audio>
-  <script src="./js/jquery.min.js"></script>
   <script src="./js/index.js"></script>
   <script src="./js/lucky.js"></script>
+  <script src="./js/jquery.area.js"></script>
   <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </body>
 </html>

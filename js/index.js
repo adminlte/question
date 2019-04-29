@@ -44,7 +44,7 @@ var isReadyDirect = true
 function showIndex() {
   $('.loading').hide()
   // 图片加载完打开的页面
-  // $('.index').fadeIn('800')
+  $('.index').fadeIn('800')
 }
 
 function renderQuestion(page) {
@@ -151,7 +151,7 @@ $(function () {
       $('.load').css('width', count + '%');
       if (count > 95) {
         showIndex()
-        // musicControl()
+        musicControl()
       }
     };
     oimg.src = imgs[index].src
@@ -211,14 +211,38 @@ $('body').on('touchend', '.button-active', function () {
 });
 $('.result-content').on('touchend', '.draw-button', function () {
   if (isReadyDirect) {
-    isReadyDirect = false
-    setTimeout(function () {
-      location.href = url
-      isReadyDirect = true
-    }, 300)
+    showPage('lucky-content')
   }
 });
-
+// 确认提交收获信息
+$('.addr-submit').on('click', function() {
+  setTimeout(function(){
+    $('.lucky-cover').hide()
+    $('.address').hide()
+  }, 300)
+})
+function resetPrizeResult() {
+  $('.prize-result0').hide()
+  $('.prize-result1').hide()
+  $('.prize-result2').hide()
+  $('.prize-result3').hide()
+  $('.prize-result4').hide()
+}
+// 关闭转盘结果
+$('.close-luck-btn').on('click', function() {
+  setTimeout(function(){
+    $('.lucky-cover').hide()
+    resetPrizeResult()
+  }, 300)
+})
+// 领取礼品
+$('.get-luck-btn').on('click', function() {
+  console.log('奖品', $(this).data('prize'))
+  setTimeout(function(){
+    $('.address').show()
+    resetPrizeResult()
+  }, 300)
+})
 function showPage(className, showLogo) {
   setTimeout(() => {
     $('.loading').hide()
