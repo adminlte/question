@@ -98,6 +98,7 @@ function renderResult(count) {
   html += '<span class="name">' + $('.input-name').val() + '</span>'
   html += '<img src="./img/r' + count + '.png" alt="" class="r-c">'
   html += '<img src="./img/draw-button.png" alt="" class="url draw-button button-active transition">'
+  html += '<img src="./img/qrcode.png" alt="" class="qrcode">'
   html += '</div>'
   html += '</div>'
   html += '</div>'
@@ -120,22 +121,29 @@ $('.question-content').on('click', '.answer-item', function (e) {
 
 function musicControl() {
   var music = $("audio")[0];
-  music.src = "../music/music.mp3"
+  music.src = "./music/music.mp3"
+  music.addEventListener('canplaythrough', function(e){
+    music.play()
+  }, false);
   document.addEventListener("WeixinJSBridgeReady", function () {
-    music.src = "../music/music.mp3"
+    music.src = "./music/music.mp3"
     music.play()
   }, false)
-  $(window).one('touchstart', function () {
+  $(window).on('click', function () {
     music.play()
+    $('.music').removeClass('music-pause')
   })
 
   // 播放音乐
-  $('.music').click(function () {
-    $(this).toggleClass('music-pause')
+  $('.music').on('click', function (e) {
+    e.stopPropagation()
+    console.log('music')
     if (music.paused) {
       music.play()
+      $(this).removeClass('music-pause')
     } else {
       music.pause()
+      $(this).addClass('music-pause')
     }
   })
 }

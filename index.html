@@ -10,11 +10,12 @@
   <link rel="stylesheet" href="./css/index.css">
 </head>
 <script src="./js/jquery.min.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <body>
   <img src="./img/loading-left.png" alt="" class="none">
   <img src="./img/loading-right.png" alt="" class="none">
   <img src="./img/logo.png" alt="logo" class="logo z1">
-  <span class="music"></span>
+  <span class="music music-pause"></span>
   <div class="loading z-top">
     <div class="loading-content">
       <div class="loading-icon"></div>
@@ -153,6 +154,7 @@
         <span class="name">某某某</span>
         <img src="./img/r4.png" alt="" class="r-c">
         <img src="./img/draw-button.png" alt="" class="draw-button">
+        <img src="./img/qrcode.png" alt="" class="qrcode">
       </div>
     </div>
   </div>
@@ -293,10 +295,9 @@
       </div>
     </div>
   </div>
-  <audio autoplay loop></audio>
+  <audio id="music" autoplay loop src="./music/music.mp3"></audio>
   <script src="./js/index.js"></script>
   <script src="./js/lucky.js"></script>
   <script src="./js/jquery.area.js"></script>
-  <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </body>
 </html>

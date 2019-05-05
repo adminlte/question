@@ -496,6 +496,14 @@ body .none {
   margin: auto;
   top: 7.2rem;
 }
+.qrcode {
+  position: absolute;
+  right: 0.44rem;
+  top: 9.26rem;
+  width: 1rem;
+  height: 1rem;
+  /*background: #000;*/
+}
 .name {
   color: #032663;
   font-size: 15px;
@@ -584,6 +592,9 @@ body .none {
 .board-item img,
 .begin-draw img{
   width: 100%;
+}
+.board-item3 img {
+  width: 80%
 }
 .begin-draw {
   background: #ffb028;
