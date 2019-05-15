@@ -645,6 +645,21 @@ body .none {
   background: #fff;
   border-radius: 10px;
 }
+.address-more {
+  height: 10.6rem;
+}
+#left, #right {
+  width: 100px;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 4px;
+  font-size: 12px;
+  border: 1px solid #084983;
+  background: #fff;
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+}
 .recipient {
   width: 2.51rem;
   padding: 0.7rem 0 0.4rem;

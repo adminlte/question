@@ -539,6 +539,8 @@ function selectP(p) {
   areaList.html(areaCont);
   $("#areaBox").scrollTop(0);
   expressArea = province[p] + " > ";
+  $("#expressArea").attr('province', province[p])
+  console.log('province', province[p])
   $("#backUp").attr("onClick", "intProvince();").show();
 }
 
@@ -562,6 +564,8 @@ function selectC(p, c) {
       expressArea += sCity + " > ";
     }
   }
+  $("#expressArea").attr('city', sCity)
+  console.log('city', sCity)
   $("#backUp").attr("onClick", "selectP(" + p + ");");
 }
 
@@ -569,6 +573,8 @@ function selectC(p, c) {
 function selectD(p, c, d) {
   clockArea();
   expressArea += district[p][c][d];
+  $("#expressArea").attr('district', district[p][c][d])
+  console.log('district', district[p][c][d])
   $("#expressArea dl dd").html(expressArea);
 }
 
@@ -584,7 +590,6 @@ function clockArea() {
 $(function () {
   /*打开省市区选项*/
   $("#expressArea").click(function () {
-    console.log($('#areaList').height())
     $("#areaMask").fadeIn();
     $("#areaLayer").animate({
       "bottom": 0

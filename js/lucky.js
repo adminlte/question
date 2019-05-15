@@ -41,9 +41,24 @@ var lucky = {
     return false;
   }
 };
+function showDegree() {
+  $('.degree').show()
+  $('.address').addClass('address-more')
+  renderDegree('#left')
+  renderDegree('#right')
+}
+function renderDegree(id) {
+  var html = ''
+  for (var i of degreeList) {
+    html += '<option value="'+ i +'">'+ i +'</option>'
+  }
+  $(id).html(html)
+}
 function showLuckyResult() {
   console.log('奖品下标=====>', lucky.prize)
   $('.lucky-cover').show()
+  $('.degree').hide()
+  $('.address').removeClass('address-more')
   switch (lucky.prize) {
     case 0:
       $('.prize-result').hide();
@@ -53,6 +68,7 @@ function showLuckyResult() {
     case 1:
       $('.prize-result').hide();
       $('.prize-result3').show();
+      showDegree()
       console.log('天天抛')
       break;
     case 2:
@@ -63,6 +79,7 @@ function showLuckyResult() {
     case 3:
       $('.prize-result').hide();
       $('.prize-result1').show();
+      showDegree()
       console.log('月抛')
       break;
     case 4:
@@ -71,7 +88,7 @@ function showLuckyResult() {
       console.log('未中奖')
       break;
     case 5:
-      // 抽到积分
+      // 抽奖抽到积分调用方法
       // $.post(url, {OpenId: OpenId, credits: 50}, function(res) {
       //   $('.prize-result').hide();
       //   $('.prize-result4').show();
@@ -88,6 +105,7 @@ function showLuckyResult() {
     case 7:
       $('.prize-result').hide();
       $('.prize-result2').show();
+      showDegree()
       console.log('护理液')
       break;
   }
@@ -132,17 +150,48 @@ function beginDraw() {
   click = true;
   return false;
 }
+
 window.onload = function () {
   lucky.init('lucky-board');
   $(".begin-draw").click(function () {
     if (click) { // click控制一次抽奖过程中不能重复点击抽奖按钮，后面的点击不响应
       return false;
     } else {
+      // 获奖内容
       // $.post(url, {OpenId: OpenId}, function(res) {
-      //   luckyIndex = res.prizeId || 0 // 请求后端获取奖品下标
+      //   luckyIndex = res.prizeId || 0
       //   beginDraw() // 成功后开始转
       // })
-      beginDraw() // 成功后开始转
+      beginDraw()
     }
   });
+  // 确认提交收获信息
+  $('.addr-submit').on('click', function() {
+    var form = {
+      OpenId: OpenId,
+      prizeId: luckyIndex,
+      name: $('.recipient-name').val(),
+      phone: $('.recipient-phone').val(),
+      province: $("#expressArea").attr('province') || '',
+      city: $("#expressArea").attr('city') || '',
+      district: $("#expressArea").attr('district') || '',
+      address: $('.detail-addr').val(),
+      leftMyopicBrightness: $('#left').val() || '',
+      rightMyopicBrightness: $('#right').val() || ''
+    }
+    // 奖品邮寄信息保存
+    $.post({
+      url: url,
+      data: form,
+      success: function(res) {
+        $('.lucky-cover').hide()
+        $('.address').hide()
+      }
+    })
+    console.log(form)
+    // setTimeout(function(){
+    //   $('.lucky-cover').hide()
+    //   $('.address').hide()
+    // }, 300)
+  })
 };

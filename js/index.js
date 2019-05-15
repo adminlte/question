@@ -44,11 +44,10 @@ var isReadyDirect = true
 function showIndex() {
   $('.loading').hide()
   // 图片加载完打开的页面
-  // $('.index').fadeIn('800')
+  $('.index').fadeIn('800')
   
-  showPage('lucky-content')
+  // showPage('lucky-content')
 }
-
 function renderQuestion(page) {
   showPage('question-content')
   var html = ''
@@ -229,13 +228,6 @@ $('.result-content').on('touchend', '.draw-button', function () {
     showPage('lucky-content')
   }
 });
-// 确认提交收获信息
-$('.addr-submit').on('click', function() {
-  setTimeout(function(){
-    $('.lucky-cover').hide()
-    $('.address').hide()
-  }, 300)
-})
 function resetPrizeResult() {
   $('.prize-result0').hide()
   $('.prize-result1').hide()
