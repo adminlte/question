@@ -44,7 +44,9 @@ var isReadyDirect = true
 function showIndex() {
   $('.loading').hide()
   // 图片加载完打开的页面
-  $('.index').fadeIn('800')
+  // $('.index').fadeIn('800')
+  
+  showPage('lucky-content')
 }
 
 function renderQuestion(page) {
@@ -129,23 +131,16 @@ function musicControl() {
     music.src = "./music/music.mp3"
     music.play()
   }, false)
-  $(window).on('click', function () {
+  $(window).one('click', function () {
     music.play()
     $('.music').removeClass('music-pause')
   })
 
-  // 播放音乐
-  $('.music').on('click', function (e) {
-    e.stopPropagation()
-    console.log('music')
-    if (music.paused) {
-      music.play()
-      $(this).removeClass('music-pause')
-    } else {
-      music.pause()
-      $(this).addClass('music-pause')
-    }
-  })
+  if (music.paused) {
+    $('.music').removeClass('music-pause')
+  } else {
+    $('.music').addClass('music-pause')
+  }
 }
 
 $(function () {
@@ -163,6 +158,18 @@ $(function () {
       }
     };
     oimg.src = imgs[index].src
+  })
+  // 播放音乐
+  $('.music').on('click', function (e) {
+    e.stopPropagation()
+    console.log('music')
+    if (music.paused) {
+      music.play()
+      $(this).removeClass('music-pause')
+    } else {
+      music.pause()
+      $(this).addClass('music-pause')
+    }
   })
 });
 $('.index-begin').on('click', function (params) {
@@ -278,11 +285,6 @@ function inputScroll() {
 
 function __init__() {
   inputScroll();
-  document.body.addEventListener('touchmove', function (e) {
-    e.preventDefault()
-  }, {
-    passive: false
-  });
   // $('.loading').hide()
   $('.index').hide();
   $('.input-content').hide();

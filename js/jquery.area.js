@@ -584,6 +584,7 @@ function clockArea() {
 $(function () {
   /*打开省市区选项*/
   $("#expressArea").click(function () {
+    console.log($('#areaList').height())
     $("#areaMask").fadeIn();
     $("#areaLayer").animate({
       "bottom": 0

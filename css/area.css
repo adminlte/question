@@ -134,10 +134,9 @@
 }
 
 .express-area-box article {
-  height: 250px;
+  height: 240px;
   overflow-y: scroll;
 }
-
 .area-list li {
   padding: 10px;
   border-bottom: 1px solid #e2e2e2;

@@ -1,3 +1,5 @@
+var OpenId = getQueryString('id')
+var degreeList = [-100, -125, -150, -175, -200, -225, -250, -275, -300, -325, -350, -375, -400, -425, -450, -475, -500, -525, -575, -600, -650, -700, -800, -850, -900, -950, -1000]
 var luckyIndex = 1; // 中奖位置
 // 谢谢 0 2 4 6
 // 天天抛 1
@@ -69,6 +71,11 @@ function showLuckyResult() {
       console.log('未中奖')
       break;
     case 5:
+      // 抽到积分
+      // $.post(url, {OpenId: OpenId, credits: 50}, function(res) {
+      //   $('.prize-result').hide();
+      //   $('.prize-result4').show();
+      // })
       $('.prize-result').hide();
       $('.prize-result4').show();
       console.log('50积分')
@@ -131,8 +138,11 @@ window.onload = function () {
     if (click) { // click控制一次抽奖过程中不能重复点击抽奖按钮，后面的点击不响应
       return false;
     } else {
-      // 这里可以添加请求获取奖品数字
-      beginDraw()
+      // $.post(url, {OpenId: OpenId}, function(res) {
+      //   luckyIndex = res.prizeId || 0 // 请求后端获取奖品下标
+      //   beginDraw() // 成功后开始转
+      // })
+      beginDraw() // 成功后开始转
     }
   });
 };
