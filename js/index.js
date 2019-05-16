@@ -1,3 +1,4 @@
+var OpenId = getQueryString('id')
 var url = '#' // 跳转链接
 var list = [{
     A: '起床后立刻戴镜',
@@ -175,9 +176,19 @@ $('.index-begin').on('click', function (params) {
   console.log('begin');
   showPage('input-content', true)
 });
+
+// 即刻测试护眼值
 $('.test-button').on('click', function () {
   var val = $('.input-name').val();
   if (val) {
+    // $.post(url, {
+    //   OpenId: OpenId,
+    //   activeId: activeId,
+    //   openId: openId,
+    //   name: val,
+    // }, function(res) {
+    //   renderQuestion(page)
+    // })
     renderQuestion(page)
   } else {
     $('.input-name').attr('placeholder', '请输入名字')
@@ -224,6 +235,13 @@ $('body').on('touchend', '.button-active', function () {
   }, 100)
 });
 $('.result-content').on('touchend', '.draw-button', function () {
+  // $.post(url, {
+  //   OpenId: OpenId,
+  //   activeId: activeId,
+  //   userId: userId
+  // }, function(res) {
+  //   showPage('lucky-content')
+  // })
   if (isReadyDirect) {
     showPage('lucky-content')
   }
