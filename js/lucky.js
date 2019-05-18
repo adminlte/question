@@ -1,4 +1,5 @@
 var OpenId = getQueryString('id')
+var interfaceExpressId=4;
 var degreeList = [-100, -125, -150, -175, -200, -225, -250, -275, -300, -325, -350, -375, -400, -425, -450, -475, -500, -525, -575, -600, -650, -700, -800, -850, -900, -950, -1000]
 var luckyIndex = 1; // 中奖位置
 // 谢谢 0 2 4 6
@@ -152,17 +153,33 @@ function beginDraw() {
 }
 
 window.onload = function () {
+
   lucky.init('lucky-board');
   $(".begin-draw").click(function () {
     if (click) { // click控制一次抽奖过程中不能重复点击抽奖按钮，后面的点击不响应
       return false;
     } else {
-      // 获奖内容
-      // $.post(url, {OpenId: OpenId}, function(res) {
-      //   luckyIndex = res.prizeId || 0
-      //   beginDraw() // 成功后开始转
-      // })
-      beginDraw()
+       // 获奖内容
+       var userData = {
+        activeId:'2',userId: "3"
+      }
+      $.ajax({
+        type:"POST",
+        contentType: 'application/json;charset=UTF-8',
+        data:JSON.stringify(userData),
+        url:"http://jiyong.peyesight.cn/dt1520/startLottery",
+        datatype: "json ", 
+        success:function(data){
+          console.log(data)
+          luckyIndex = data.map.selected||0;
+          interfaceExpressId=data.map.interfaceExpressId||0;
+          beginDraw() // 成功后开始转
+        }, 
+        error:function(){
+            console.log("zcxasdres")
+        }         
+    });
+     // beginDraw()
     }
   });
   // 确认提交收获信息
@@ -170,24 +187,31 @@ window.onload = function () {
     var form = {
       OpenId: OpenId,
       prizeId: luckyIndex,
-      name: $('.recipient-name').val(),
-      phone: $('.recipient-phone').val(),
-      province: $("#expressArea").attr('province') || '',
-      city: $("#expressArea").attr('city') || '',
-      district: $("#expressArea").attr('district') || '',
-      address: $('.detail-addr').val(),
+      interfaceExpressId:interfaceExpressId,
+      userName: $('.recipient-name').val(),
+      userPhone: $('.recipient-phone').val(),
+      addressProvince: $("#expressArea").attr('province') || '',
+      addressCity: $("#expressArea").attr('city') || '',
+      addressCounty: $("#expressArea").attr('district') || '',
+      addressDetail: $('.detail-addr').val(),
       leftMyopicBrightness: $('#left').val() || '',
       rightMyopicBrightness: $('#right').val() || ''
     }
     // 奖品邮寄信息保存
-    $.post({
-      url: url,
-      data: form,
-      success: function(res) {
+    $.ajax({
+      type:"POST",
+      contentType: 'application/json;charset=UTF-8',
+      data:JSON.stringify(form),
+      url:"http://jiyong.peyesight.cn/view/interface_express/save",
+      datatype: "json ", 
+      success:function(data){
         $('.lucky-cover').hide()
         $('.address').hide()
-      }
-    })
+      }, 
+      error:function(){
+          console.log("zcxasdres")
+      }             
+  });
     console.log(form)
     // setTimeout(function(){
     //   $('.lucky-cover').hide()

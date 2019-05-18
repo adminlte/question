@@ -1,3 +1,4 @@
+
 var OpenId = getQueryString('id')
 var url = '#' // 跳转链接
 var list = [{
@@ -180,16 +181,28 @@ $('.index-begin').on('click', function (params) {
 // 即刻测试护眼值
 $('.test-button').on('click', function () {
   var val = $('.input-name').val();
+  console.log("OpenId",OpenId)
   if (val) {
-    // $.post(url, {
-    //   OpenId: OpenId,
-    //   activeId: activeId,
-    //   openId: openId,
-    //   name: val,
-    // }, function(res) {
-    //   renderQuestion(page)
-    // })
-    renderQuestion(page)
+    var userData={
+      openid:OpenId,
+      activeId: "2",
+      name: val,
+    }
+    $.ajax({
+      type:"POST",
+      contentType: 'application/json;charset=UTF-8',
+      data:JSON.stringify(userData),
+      url:"http://jiyong.peyesight.cn/view/we_chat/save_junxin",
+      datatype: "json ", 
+      success:function(data){
+        console.log(data)
+        renderQuestion(page)
+      }, 
+      error:function(){
+          console.log("失败了")
+      }         
+   });
+   // renderQuestion(page)
   } else {
     $('.input-name').attr('placeholder', '请输入名字')
   }
@@ -235,13 +248,27 @@ $('body').on('touchend', '.button-active', function () {
   }, 100)
 });
 $('.result-content').on('touchend', '.draw-button', function () {
-  // $.post(url, {
-  //   OpenId: OpenId,
-  //   activeId: activeId,
-  //   userId: userId
-  // }, function(res) {
-  //   showPage('lucky-content')
-  // })
+  var luckyContent={
+    openid: OpenId,
+    activeId: 2,
+    userId: 13
+  }
+  $.ajax({
+    type:"POST",
+    contentType: 'application/json;charset=UTF-8',
+    data:JSON.stringify(luckyContent),
+    url:"http://jiyong.peyesight.cn/dt1520/startLottery",
+    datatype: "json ", 
+    success:function(data){
+      console.log(data)
+      showPage('lucky-content')
+    }, 
+    error:function(){
+        console.log("zcxasdres")
+    }         
+});
+
+
   if (isReadyDirect) {
     showPage('lucky-content')
   }
