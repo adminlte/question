@@ -106,7 +106,7 @@ function showLuckyResult() {
     case 7:
       $('.prize-result').hide();
       $('.prize-result2').show();
-      showDegree()
+      // showDegree()
       console.log('护理液')
       break;
   }
