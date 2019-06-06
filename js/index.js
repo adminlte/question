@@ -75,6 +75,7 @@ $('.result-content').longPress(function() {
     .catch(function (error) {
       isReadySnapshot = true
       console.error('oops, something went wrong!', error)
+      alert(error)
     })
   }
 })
@@ -86,8 +87,8 @@ $('.result-content').on('touchstart', '.snapshot-close', function() {
 function showIndex() {
   $('.loading').hide()
   // 图片加载完打开的页面
-  $('.index').fadeIn('800')
-  
+  // $('.index').fadeIn('800')
+  renderResult(2)
   // showPage('lucky-content')
 }
 function renderQuestion(page) {
