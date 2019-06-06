@@ -64,26 +64,29 @@ $('.result-content').longPress(function() {
   if (isReadySnapshot) {
     domtoimage.toPng(node)
     .then(function (dataUrl) {
-      console.log(dataUrl)
       isReadySnapshot = false
-      $('.result-content').append('<div class="coverImgParent"><img class="coverImgData" src="'+ dataUrl +'"><span class="snapshot-close fz-18 tc-f">x</span></div>')
+      if ($('.coverImgParent').length) {
+        $('.result-content .coverImgData').html('<img class="coverImgData" src="'+ dataUrl +'"><span class="snapshot-close fz-18 tc-f">x</span>')
+        $('.coverImgParent').show()
+      } else {
+        $('.result-content').append('<div class="coverImgParent"><img class="coverImgData" src="'+ dataUrl +'"><span class="snapshot-close fz-18 tc-f">x</span></div>')
+      }
     })
     .catch(function (error) {
       isReadySnapshot = true
       console.error('oops, something went wrong!', error)
-      alert(error)
     })
   }
 })
-$('.result-content').on('click', '.snapshot-close', function() {
-  console.log('aaccc')
-  $('.result-content').remove('.coverImgParent')
+$('.result-content').on('touchstart', '.snapshot-close', function() {
+  console.log('.snapshot-close')
+  $('.coverImgParent').hide()
+  isReadySnapshot = true
 })
 function showIndex() {
   $('.loading').hide()
   // 图片加载完打开的页面
-  // $('.index').fadeIn('800')
-  renderResult(2)
+  $('.index').fadeIn('800')
   
   // showPage('lucky-content')
 }
