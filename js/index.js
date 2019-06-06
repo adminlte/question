@@ -59,30 +59,13 @@ $.fn.longPress = function (fn) {
     }, false);
   }
 }
-
-
-function getImg(){
-
-	html2canvas(document.body).then(canvas => {
-
-			document.body.appendChild(canvas);
-			  convertCanvasToImage(canvas);
-});
-}
 function convertCanvasToImage(canvas) {
-	        var image = new Image();
-        image.src = canvas.toDataURL("image/png");
-		 document.write("<h1>sorry!</h1>");
-
-
-        document.body.appendChild(image);
-
- // if ($('.coverImgParent').length) {
-  //  $('body .coverImgData').html('<img class="coverImgData" src="'+ canvas.toDataURL('image/png') +'"><span class="snapshot-close fz-18 tc-f">x</span>')
-  //  $('.coverImgParent').show()
-  //} else {
-  //  $('body').append('<div class="coverImgParent"><img class="coverImgData" src="'+ canvas.toDataURL('image/png') +'"><span class="snapshot-close fz-18 tc-f">x</span></div>')
-  //}
+  if ($('.coverImgParent').length) {
+    $('body .coverImgData').html('<img class="coverImgData" src="'+ canvas.toDataURL('image/png') +'"><span class="snapshot-close fz-18 tc-f">x</span>')
+    $('.coverImgParent').show()
+  } else {
+    $('body').append('<div class="coverImgParent"><img class="coverImgData" src="'+ canvas.toDataURL('image/png') +'"><span class="snapshot-close fz-18 tc-f">x</span></div>')
+  }
 }
 var node = document.getElementsByTagName('body')[0]
 $('.result-content').longPress(function() {
@@ -123,8 +106,7 @@ $('body').on('touchstart', '.snapshot-close', function(e) {
 function showIndex() {
   $('.loading').hide()
   // 图片加载完打开的页面
-  // $('.index').fadeIn('800')
-  renderResult(2)
+  $('.index').fadeIn('800')
   // showPage('lucky-content')
 }
 function renderQuestion(page) {
