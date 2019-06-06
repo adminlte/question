@@ -1,6 +1,8 @@
 
 var OpenId = getQueryString('id')
 var url = '#' // 跳转链接
+var activeId= getQueryString('activeId')
+var userId=''
 var list = [{
     A: '起床后立刻戴镜',
     B: '洗净双手后，妆前戴镜',
@@ -185,17 +187,17 @@ $('.test-button').on('click', function () {
   if (val) {
     var userData={
       openid:OpenId,
-      activeId: "2",
+      activeId: activeId,
       name: val,
     }
     $.ajax({
       type:"POST",
       contentType: 'application/json;charset=UTF-8',
       data:JSON.stringify(userData),
-      url:"http://jiyong.peyesight.cn/view/we_chat/save_junxin",
+      url:"https://www.peyesight.cn/server/view/we_chat_junxin/save",
       datatype: "json ", 
       success:function(data){
-        console.log(data)
+        userId=data.userId
         renderQuestion(page)
       }, 
       error:function(){
@@ -250,23 +252,22 @@ $('body').on('touchend', '.button-active', function () {
 $('.result-content').on('touchend', '.draw-button', function () {
   var luckyContent={
     openid: OpenId,
-    activeId: 2,
-    userId: 13
+    activeId: activeId,
+    userId: userId
   }
+  console.log()
   $.ajax({
     type:"POST",
     contentType: 'application/json;charset=UTF-8',
     data:JSON.stringify(luckyContent),
-    url:"http://jiyong.peyesight.cn/dt1520/startLottery",
+    url:"https://www.peyesight.cn/server/dt1520/lotteryUserSave",
     datatype: "json ", 
     success:function(data){
-      console.log(data)
-      showPage('lucky-content')
     }, 
     error:function(){
-        console.log("zcxasdres")
     }         
-});
+  });
+  showPage('lucky-content')
 
 
   if (isReadyDirect) {

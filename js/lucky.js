@@ -1,4 +1,4 @@
-var OpenId = getQueryString('id')
+var OpenId = getQueryString('openid')
 var interfaceExpressId=4;
 var degreeList = [-100, -125, -150, -175, -200, -225, -250, -275, -300, -325, -350, -375, -400, -425, -450, -475, -500, -525, -575, -600, -650, -700, -800, -850, -900, -950, -1000]
 var luckyIndex = 1; // 中奖位置
@@ -153,7 +153,7 @@ function beginDraw() {
 }
 
 window.onload = function () {
-
+  
   lucky.init('lucky-board');
   $(".begin-draw").click(function () {
     if (click) { // click控制一次抽奖过程中不能重复点击抽奖按钮，后面的点击不响应
@@ -161,19 +161,29 @@ window.onload = function () {
     } else {
        // 获奖内容
        var userData = {
-        activeId:'2',userId: "3"
+        activeId:activeId,
+        userId: userId,
+        openid:OpenId
       }
       $.ajax({
         type:"POST",
         contentType: 'application/json;charset=UTF-8',
         data:JSON.stringify(userData),
-        url:"http://jiyong.peyesight.cn/dt1520/startLottery",
+        url:"https://www.peyesight.cn/server/dt1520/startLottery",
         datatype: "json ", 
         success:function(data){
           console.log(data)
-          luckyIndex = data.map.selected||0;
-          interfaceExpressId=data.map.interfaceExpressId||0;
-          beginDraw() // 成功后开始转
+          console.log("data.map.InterfaceExpressId",data.map.InterfaceExpressId)
+          if(data.success==true){
+            luckyIndex = data.map.selected||0;
+            interfaceExpressId=data.map.InterfaceExpressId;
+            beginDraw() // 成功后开始转
+          }else{
+            alert(data.msg)
+          }
+         
+
+        
         }, 
         error:function(){
             console.log("zcxasdres")
@@ -200,13 +210,19 @@ window.onload = function () {
     // 奖品邮寄信息保存
     $.ajax({
       type:"POST",
-      contentType: 'application/json;charset=UTF-8',
-      data:JSON.stringify(form),
-      url:"http://jiyong.peyesight.cn/view/interface_express/save",
-      datatype: "json ", 
+      data:form,
+      url:"https://www.peyesight.cn/server/view/interface_express/save",
       success:function(data){
-        $('.lucky-cover').hide()
-        $('.address').hide()
+        if(data.success==true){
+            alert("信息保存成功")
+            $('.lucky-cover').hide()
+            $('.address').hide()
+        }
+        if(data.success==false){
+          alert(data.msg)
+          $('.lucky-cover').hide()
+          $('.address').hide()
+      }
       }, 
       error:function(){
           console.log("zcxasdres")
