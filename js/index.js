@@ -106,7 +106,8 @@ $('body').on('touchstart', '.snapshot-close', function(e) {
 function showIndex() {
   $('.loading').hide()
   // 图片加载完打开的页面
-  $('.index').fadeIn('800')
+  // $('.index').fadeIn('800')
+  renderResult(2)
   // showPage('lucky-content')
 }
 function renderQuestion(page) {
@@ -154,6 +155,7 @@ function renderTips(page) {
 }
 
 function renderResult(count) {
+  $('.music').hide()
   isReadySnapshot = true
   showPage('result-content', true)
   var html = ''
@@ -161,7 +163,7 @@ function renderResult(count) {
   html += '<span class="name">' + $('.input-name').val() + '</span>'
   html += '<img src="./img/r' + count + '.png" alt="" class="r-c">'
   html += '<img src="./img/draw-button.png" alt="" class="url draw-button button-active transition">'
-  html += '<img src="./img/qrcode.png" alt="" class="qrcode">'
+  html += '<div class="qrcode"><img src="./img/qrcode.png" alt=""></div>'
   html += '</div>'
   html += '</div>'
   html += '</div>'
