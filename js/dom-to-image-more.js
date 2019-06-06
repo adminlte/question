@@ -485,8 +485,7 @@
                 //     // image.crossOrigin = 'use-credentials';
                 //     image.crossOrigin = 'anonymous';
                 // }
-                image.crossOrigin = 'anonymous';
-                image.crossOrigin = '*';
+                image.setAttribute("crossOrigin",'Anonymous')
                 image.onload = function() {
                     resolve(image);
                 };

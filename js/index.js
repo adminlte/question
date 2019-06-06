@@ -59,28 +59,47 @@ $.fn.longPress = function (fn) {
     }, false);
   }
 }
+function convertCanvasToImage(canvas) {
+  if ($('.coverImgParent').length) {
+    $('body .coverImgData').html('<img class="coverImgData" src="'+ canvas.toDataURL('image/png') +'"><span class="snapshot-close fz-18 tc-f">x</span>')
+    $('.coverImgParent').show()
+  } else {
+    $('body').append('<div class="coverImgParent"><img class="coverImgData" src="'+ canvas.toDataURL('image/png') +'"><span class="snapshot-close fz-18 tc-f">x</span></div>')
+  }
+}
 var node = document.getElementsByTagName('body')[0]
 $('.result-content').longPress(function() {
   if (isReadySnapshot) {
-    domtoimage.toPng(node)
-    .then(function (dataUrl) {
-      isReadySnapshot = false
-      if ($('.coverImgParent').length) {
-        $('.result-content .coverImgData').html('<img class="coverImgData" src="'+ dataUrl +'"><span class="snapshot-close fz-18 tc-f">x</span>')
-        $('.coverImgParent').show()
-      } else {
-        $('.result-content').append('<div class="coverImgParent"><img class="coverImgData" src="'+ dataUrl +'"><span class="snapshot-close fz-18 tc-f">x</span></div>')
-      }
-    })
-    .catch(function (error) {
+    isReadySnapshot = false
+    html2canvas(node).then(canvas => {
+      document.body.appendChild(canvas)
+      convertCanvasToImage(canvas)
+    }).catch(function (error) {
       isReadySnapshot = true
       console.error('oops, something went wrong!', error)
       alert(error)
     })
+    // domtoimage.toPng(node)
+    // .then(function (dataUrl) {
+    //   console.log(dataUrl)
+    //   isReadySnapshot = false
+      // if ($('.coverImgParent').length) {
+      //   $('.result-content .coverImgData').html('<img class="coverImgData" src="'+ dataUrl +'"><span class="snapshot-close fz-18 tc-f">x</span>')
+      //   $('.coverImgParent').show()
+      // } else {
+      //   $('.result-content').append('<div class="coverImgParent"><img class="coverImgData" src="'+ dataUrl +'"><span class="snapshot-close fz-18 tc-f">x</span></div>')
+      // }
+    // })
+    // .catch(function (error) {
+    //   isReadySnapshot = true
+    //   console.error('oops, something went wrong!', error)
+    //   alert(error)
+    // })
   }
 })
-$('.result-content').on('touchstart', '.snapshot-close', function() {
+$('body').on('touchstart', '.snapshot-close', function(e) {
   console.log('.snapshot-close')
+  e.stopPropagation()
   $('.coverImgParent').hide()
   isReadySnapshot = true
 })
