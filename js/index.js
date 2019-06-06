@@ -3,6 +3,7 @@ var OpenId = getQueryString('id')
 var url = '#' // 跳转链接
 var activeId= getQueryString('activeId')
 var userId=''
+var isReadySnapshot = true
 var list = [{
     A: '起床后立刻戴镜',
     B: '洗净双手后，妆前戴镜',
@@ -44,11 +45,45 @@ var count = 0
 var page = 1
 var isReady = true
 var isReadyDirect = true
-
+// 长按事件
+$.fn.longPress = function (fn) {
+  var timeout = undefined;
+  var $this = this;
+  for (var i = 0; i < $this.length; i++) {
+    $this[i].addEventListener('touchstart', function (event) {
+      event.preventDefault()
+      timeout = setTimeout(fn, 100);
+    }, false);
+    $this[i].addEventListener('touchend', function (event) {
+      clearTimeout(timeout);
+    }, false);
+  }
+}
+var node = document.getElementsByTagName('body')[0]
+$('.result-content').longPress(function() {
+  if (isReadySnapshot) {
+    domtoimage.toPng(node)
+    .then(function (dataUrl) {
+      console.log(dataUrl)
+      isReadySnapshot = false
+      $('.result-content').append('<div class="coverImgParent"><img class="coverImgData" src="'+ dataUrl +'"><span class="snapshot-close fz-18 tc-f">x</span></div>')
+    })
+    .catch(function (error) {
+      isReadySnapshot = true
+      console.error('oops, something went wrong!', error)
+      alert(error)
+    })
+  }
+})
+$('.result-content').on('click', '.snapshot-close', function() {
+  console.log('aaccc')
+  $('.result-content').remove('.coverImgParent')
+})
 function showIndex() {
   $('.loading').hide()
   // 图片加载完打开的页面
-  $('.index').fadeIn('800')
+  // $('.index').fadeIn('800')
+  renderResult(2)
   
   // showPage('lucky-content')
 }
@@ -97,6 +132,7 @@ function renderTips(page) {
 }
 
 function renderResult(count) {
+  isReadySnapshot = true
   showPage('result-content', true)
   var html = ''
   html += '<div class="result result' + count + ' full-screen"><div class="main-content"><div class="result-cover absolute">'

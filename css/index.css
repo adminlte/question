@@ -701,3 +701,29 @@ body .none {
 .addr-submit {
   width: 3.77rem;
 }
+
+.coverImgParent {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.coverImgParent img {
+  width: 70%
+}
+.fz-18 {
+  font-size: 18px;
+}
+.tc-f {
+  color: #fff
+}
+.snapshot-close {
+  position: absolute;
+  right: 30px;
+  top: 80px;
+}
