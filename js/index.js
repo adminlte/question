@@ -106,9 +106,7 @@ $('body').on('touchstart', '.snapshot-close', function(e) {
 function showIndex() {
   $('.loading').hide()
   // 图片加载完打开的页面
-  // $('.index').fadeIn('800')
-  renderResult(2)
-  // showPage('lucky-content')
+  $('.index').fadeIn('800')
 }
 function renderQuestion(page) {
   showPage('question-content')
